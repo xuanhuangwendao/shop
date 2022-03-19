@@ -1,10 +1,11 @@
 package com.xing.shop.login.impl;
 
-import com.xing.shop.domain.User;
+import com.xing.shop.domain.Account;
 import com.xing.shop.login.LoginService;
-import com.xing.shop.repository.UserRepository;
+import com.xing.shop.repository.AccountRepository;
 import com.xing.shop.util.JwtUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,18 +16,22 @@ import javax.annotation.Resource;
  */
 @Service
 public class LoginServiceImpl implements LoginService {
-    @Resource
-    private UserRepository userRepository;
+
+    @Autowired
+    AccountRepository accountRepository;
+
     @Override
     public String login(String userName, String password) {
-        User user = userRepository.findUserByUserNameEquals(userName);
-        if (user == null) {
+        Account account = accountRepository.getAccountByUsernameEquals(userName);
+        if (account == null) {
             return null;
         }
-        if (!StringUtils.equals(user.getPassword(), password)) {
+        if (!StringUtils.equals(password, account.getPassword())) {
             return null;
         }
-        return JwtUtils.createToken(String.valueOf(user.getId()));
-
+        if (account.getStatus() < 0) {
+            return null;
+        }
+        return JwtUtils.createToken(String.valueOf(account.getId()));
     }
 }
