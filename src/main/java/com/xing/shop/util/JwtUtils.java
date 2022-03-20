@@ -77,9 +77,7 @@ public class JwtUtils {
 
             JwtClaims claims = consumer.processToClaims(token);
             if (claims != null) {
-                System.out.println("认证通过！");
                 String userId = (String) claims.getClaimValue("userId");
-                System.out.println("token userId=" + userId);
                 return userId;
             }
         }  catch (JoseException e) {
