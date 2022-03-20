@@ -1,7 +1,7 @@
 package com.xing.shop.controller;
 
 import com.xing.shop.domain.Result;
-import com.xing.shop.user.LoginService;
+import com.xing.shop.service.LoginService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

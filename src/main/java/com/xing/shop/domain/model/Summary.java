@@ -39,13 +39,13 @@ public class Summary {
     private Instant gmtCreate;
 
     @Column(name = "gmt_modified")
-    private String gmtModified;
+    private Instant gmtModified;
 
-    public String getGmtModified() {
+    public Instant getGmtModified() {
         return gmtModified;
     }
 
-    public void setGmtModified(String gmtModified) {
+    public void setGmtModified(Instant gmtModified) {
         this.gmtModified = gmtModified;
     }
 

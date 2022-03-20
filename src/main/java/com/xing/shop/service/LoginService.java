@@ -1,4 +1,4 @@
-package com.xing.shop.user;
+package com.xing.shop.service;
 
 import com.xing.shop.domain.Result;
 

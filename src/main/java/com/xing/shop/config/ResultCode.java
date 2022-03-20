@@ -23,7 +23,12 @@ public enum ResultCode {
 
     PASSWORD_ERROR(603, "用户密码错误"),
 
-    USER_STATUS_ERROR(604, "账号状态异常");
+    USER_STATUS_ERROR(604, "账号状态异常"),
+
+    EMPTY_RESULT(605, "结果为空"),
+
+
+    ;
 
     public final Integer code;
 

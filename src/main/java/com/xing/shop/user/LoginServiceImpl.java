@@ -1,9 +1,9 @@
-package com.xing.shop.user.impl;
+package com.xing.shop.user;
 
 import com.xing.shop.config.ResultCode;
 import com.xing.shop.domain.Result;
 import com.xing.shop.domain.model.Account;
-import com.xing.shop.user.LoginService;
+import com.xing.shop.service.LoginService;
 import com.xing.shop.repository.AccountRepository;
 import com.xing.shop.util.JwtUtils;
 import org.apache.commons.lang3.StringUtils;
