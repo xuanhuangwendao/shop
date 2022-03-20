@@ -1,4 +1,4 @@
-package com.xing.shop.recommend;
+package com.xing.shop.shop;
 
 import com.xing.shop.config.ResultCode;
 import com.xing.shop.domain.Result;

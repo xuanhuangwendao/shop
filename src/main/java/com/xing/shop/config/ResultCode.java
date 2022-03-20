@@ -27,6 +27,8 @@ public enum ResultCode {
 
     EMPTY_RESULT(605, "结果为空"),
 
+    ITEM_NOT_FOUND(606, "商品不存在"),
+
 
     ;
 

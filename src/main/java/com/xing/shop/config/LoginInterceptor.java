@@ -24,10 +24,18 @@ import java.io.IOException;
 @Slf4j
 public class LoginInterceptor implements HandlerInterceptor {
 
+    public static final boolean useToken = false;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String uri = request.getRequestURI();
         log.error("uri:" + uri);
+        if (!useToken) {
+            Context context = new Context();
+            context.setUserId(1L);
+            ThreadUtils.context.set(context);
+            return true;
+        }
         if (StringUtils.equals(uri, "/user/login")) {
             return true;
         }
@@ -58,7 +66,6 @@ public class LoginInterceptor implements HandlerInterceptor {
     }
 
     public <T>void writeResponse(HttpServletResponse response, Result<T> result) throws IOException {
-
         response.setContentType("application/json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setStatus(200);
