@@ -1,4 +1,4 @@
-package com.xing.shop.domain;
+package com.xing.shop.domain.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

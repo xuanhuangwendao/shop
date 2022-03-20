@@ -1,23 +1,24 @@
-package com.xing.shop.domain;
+package com.xing.shop.domain.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 import java.time.Instant;
 
 @Entity
-@Table(name = "user_info")
-public class UserInfo {
+@Table(name = "wallet")
+public class Wallet {
     @Id
     @Column(name = "userid", nullable = false)
     private Long id;
 
-    @Column(name = "nickname")
-    private String nickname;
+    @Column(name = "bank_number")
+    private String bankNumber;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "balance", precision = 10, scale = 2)
+    private BigDecimal balance;
 
     @Column(name = "gmt_create")
     private Instant gmtCreate;
@@ -41,20 +42,20 @@ public class UserInfo {
         this.gmtCreate = gmtCreate;
     }
 
-    public String getAddress() {
-        return address;
+    public BigDecimal getBalance() {
+        return balance;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getBankNumber() {
+        return bankNumber;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setBankNumber(String bankNumber) {
+        this.bankNumber = bankNumber;
     }
 
     public Long getId() {

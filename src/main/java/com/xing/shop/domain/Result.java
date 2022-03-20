@@ -1,5 +1,6 @@
 package com.xing.shop.domain;
 
+import com.xing.shop.config.ResultCode;
 import lombok.Data;
 
 /**
@@ -27,10 +28,20 @@ public class Result<T>{
     }
 
     public static <T>Result<T> success(T model) {
-        return getInstance(true, model, 200, "Success");
+        return getInstance(true, model, ResultCode.SUCCESS.code, ResultCode.SUCCESS.message);
     }
+
     public static <T>Result<T> fail(T model) {
-        return getInstance(false, model, 400, "Error");
+        return getInstance(false, model, ResultCode.SERVICE_ERROR.code, ResultCode.SERVICE_ERROR.message);
     }
+
+    public static <T>Result<T> fail(Integer code, String message) {
+        return getInstance(false, null, code, message);
+    }
+
+    public static <T>Result<T> fail(ResultCode code) {
+        return getInstance(false, null, code.code, code.message);
+    }
+
 
 }

@@ -1,4 +1,6 @@
-package com.xing.shop.login;
+package com.xing.shop.user;
+
+import com.xing.shop.domain.Result;
 
 /**
  * @author ：xuanhuangwendao
@@ -12,6 +14,6 @@ public interface LoginService {
      * @param password 用户登录密码
      * @return token
      */
-    String login(String userName, String password);
+    Result<String> login(String userName, String password);
 
 }

@@ -9,5 +9,5 @@ import lombok.Data;
 @Data
 public class Context {
 
-    private String userId;
+    private Long userId;
 }

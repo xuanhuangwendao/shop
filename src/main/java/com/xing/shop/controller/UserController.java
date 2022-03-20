@@ -1,7 +1,7 @@
 package com.xing.shop.controller;
 
 import com.xing.shop.domain.Result;
-import com.xing.shop.login.LoginService;
+import com.xing.shop.user.LoginService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,10 +21,7 @@ public class UserController {
 
     @RequestMapping("/login")
     public Result<String> login(@RequestParam String username, @RequestParam String password) {
-        String token = loginService.login(username, password);
-        return Result.success(token);
-
+        return loginService.login(username, password);
     }
-
 
 }

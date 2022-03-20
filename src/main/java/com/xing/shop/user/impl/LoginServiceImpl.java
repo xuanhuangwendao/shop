@@ -1,14 +1,14 @@
-package com.xing.shop.login.impl;
+package com.xing.shop.user.impl;
 
-import com.xing.shop.domain.Account;
-import com.xing.shop.login.LoginService;
+import com.xing.shop.config.ResultCode;
+import com.xing.shop.domain.Result;
+import com.xing.shop.domain.model.Account;
+import com.xing.shop.user.LoginService;
 import com.xing.shop.repository.AccountRepository;
 import com.xing.shop.util.JwtUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * @author ：xuanhuangwendao
@@ -21,17 +21,18 @@ public class LoginServiceImpl implements LoginService {
     AccountRepository accountRepository;
 
     @Override
-    public String login(String userName, String password) {
+    public Result<String> login(String userName, String password) {
         Account account = accountRepository.getAccountByUsernameEquals(userName);
         if (account == null) {
-            return null;
+            return Result.fail(ResultCode.USER_NOT_EXIT);
         }
         if (!StringUtils.equals(password, account.getPassword())) {
-            return null;
+            return Result.fail(ResultCode.PASSWORD_ERROR);
         }
         if (account.getStatus() < 0) {
-            return null;
+            return Result.fail(ResultCode.USER_STATUS_ERROR);
         }
-        return JwtUtils.createToken(String.valueOf(account.getId()));
+        String token = JwtUtils.createToken(String.valueOf(account.getId()));
+        return Result.success(token);
     }
 }
