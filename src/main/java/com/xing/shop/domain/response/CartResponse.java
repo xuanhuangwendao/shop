@@ -14,11 +14,12 @@ public class CartResponse {
 
     List<CartItem> cartItemList = new ArrayList<>();
 
-
     @Data
     public static class CartItem {
 
         private Long orderId;
+
+        private String picUrl;
 
         private String title;
 

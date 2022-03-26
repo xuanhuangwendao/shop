@@ -10,4 +10,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> getAllByTypeEqualsAndBuyerIdEquals(int type, long buyerId);
 
+    List<Order> getAllByIdIn(List<Long> idList);
+
 }

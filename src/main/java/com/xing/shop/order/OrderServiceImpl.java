@@ -41,11 +41,16 @@ public class OrderServiceImpl implements OrderService {
         } else {
             List<Order> orderList = orderRepository.getAllByTypeEqualsAndBuyerIdEquals(status, 1L);
             for (Order order : orderList) {
+                Optional<Summary> summary = summaryRepository.findById(order.getItemId());
+                if (summary.isEmpty()) {
+                    continue;
+                }
                 CartResponse.CartItem item = new CartResponse.CartItem();
                 item.setPrice(order.getPrice().doubleValue());
                 item.setPriceText("￥" + order.getPrice());
                 item.setNum(order.getItemNum());
                 item.setTitle(order.getItemTitle());
+                item.setPicUrl(summary.get().getPicUrl());
                 item.setOrderId(order.getId());
                 cartItemList.add(item);
             }
