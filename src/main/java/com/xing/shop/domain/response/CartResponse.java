@@ -14,6 +14,10 @@ public class CartResponse {
 
     List<CartItem> cartItemList = new ArrayList<>();
 
+    private Double totalAmount;
+
+    private String totalAmountText;
+
     @Data
     public static class CartItem {
 

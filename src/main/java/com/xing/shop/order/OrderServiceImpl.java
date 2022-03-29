@@ -40,6 +40,7 @@ public class OrderServiceImpl implements OrderService {
 
         } else {
             List<Order> orderList = orderRepository.getAllByTypeEqualsAndBuyerIdEquals(status, 1L);
+            BigDecimal totalAmount = BigDecimal.ZERO;
             for (Order order : orderList) {
                 Optional<Summary> summary = summaryRepository.findById(order.getItemId());
                 if (summary.isEmpty()) {
@@ -53,7 +54,10 @@ public class OrderServiceImpl implements OrderService {
                 item.setPicUrl(summary.get().getPicUrl());
                 item.setOrderId(order.getId());
                 cartItemList.add(item);
+                totalAmount = totalAmount.add(order.getPrice().multiply(BigDecimal.valueOf(order.getItemNum())));
             }
+            cartResponse.setTotalAmount(totalAmount.doubleValue());
+            cartResponse.setTotalAmountText("￥" + totalAmount);
         }
         return Result.success(cartResponse);
     }
@@ -77,5 +81,32 @@ public class OrderServiceImpl implements OrderService {
         order.setItemTitle(item.get().getTitle());
         orderRepository.save(order);
         return Result.success(true);
+    }
+
+    @Override
+    public Result<Boolean> update(long orderId, int num) {
+        Order order = orderRepository.getById(orderId);
+        int itemNum = order.getItemNum() + num;
+        if (itemNum < 0) {
+            return Result.fail(ResultCode.MODIFY_ORDER_FAIL);
+        } else if (itemNum == 0) {
+            order.setType(-2);
+            order.setItemNum(0);
+            order.setAmount(BigDecimal.ZERO);
+            order.setGmtModified(Instant.now());
+            orderRepository.save(order);
+            return Result.success(true);
+        } else {
+            Long itemId = order.getItemId();
+            Summary item = summaryRepository.getById(itemId);
+            if (item.getStock().compareTo(BigDecimal.valueOf(itemNum)) < 0) {
+                return Result.fail(ResultCode.STOCK_NOT_ENOUGH);
+            }
+            order.setItemNum(itemNum);
+            order.setAmount(order.getPrice().multiply(order.getPrice()));
+            order.setGmtModified(Instant.now());
+            orderRepository.save(order);
+            return Result.success(true);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.xing.shop.controller;
 
+import com.xing.shop.config.ResultCode;
 import com.xing.shop.domain.Result;
 import com.xing.shop.domain.model.Summary;
 import com.xing.shop.domain.response.CartResponse;
@@ -7,12 +8,13 @@ import com.xing.shop.domain.response.ItemListResponse;
 import com.xing.shop.service.DetailService;
 import com.xing.shop.service.OrderService;
 import com.xing.shop.service.RecommendService;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.lang.model.type.IntersectionType;
 
 /**
  * @author ：xuanhuangwendao
@@ -51,6 +53,17 @@ public class ShopController {
     public Result<CartResponse> getOrder(@RequestParam Integer status) {
         Result<CartResponse> result = orderService.getOrderListByStatus(status);
         return result;
+    }
+
+    @RequestMapping("/updateOrder")
+    public Result<Boolean> updateOrder(@RequestParam Long orderId, @RequestParam String operation, @RequestParam String content) {
+        if (StringUtils.equals(operation, "update")) {
+            int num = NumberUtils.toInt(content);
+            Result<Boolean> result = orderService.update(orderId, num);
+            return result;
+        } else {
+            return Result.fail(ResultCode.MODIFY_ORDER_FAIL);
+        }
     }
 
 }
