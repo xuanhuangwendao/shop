@@ -31,7 +31,9 @@ public enum ResultCode {
 
     MODIFY_ORDER_FAIL(607, "修改订单失败"),
 
-    STOCK_NOT_ENOUGH(608, "商品库存不足")
+    STOCK_NOT_ENOUGH(608, "商品库存不足"),
+
+    REGISTER_ERROR(609, "注册失败")
 
     ;
 

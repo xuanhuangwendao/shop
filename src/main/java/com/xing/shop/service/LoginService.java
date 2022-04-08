@@ -1,6 +1,7 @@
 package com.xing.shop.service;
 
 import com.xing.shop.domain.Result;
+import com.xing.shop.domain.request.RegisterRequest;
 
 /**
  * @author ：xuanhuangwendao
@@ -15,5 +16,7 @@ public interface LoginService {
      * @return token
      */
     Result<String> login(String userName, String password);
+
+    Result<Boolean> register(RegisterRequest registerInfo);
 
 }
