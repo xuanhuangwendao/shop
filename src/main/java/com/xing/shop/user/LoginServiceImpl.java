@@ -65,6 +65,7 @@ public class LoginServiceImpl implements LoginService {
         userInfo.setAddress(registerInfo.getAddress());
         userInfo.setGmtCreate(Instant.now());
         userInfo.setGmtModified(Instant.now());
+        userInfo.setImg("http://192.168.31.42:7002/img/default");
         UserInfo userSave = userInfoRepository.save(userInfo);
 
         return Result.success(true);

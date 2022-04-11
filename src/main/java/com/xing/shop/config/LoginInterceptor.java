@@ -24,7 +24,7 @@ import java.io.IOException;
 @Slf4j
 public class LoginInterceptor implements HandlerInterceptor {
 
-    public static final boolean useToken = false;
+    public static final boolean useToken = true;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -34,6 +34,9 @@ public class LoginInterceptor implements HandlerInterceptor {
             Context context = new Context();
             context.setUserId(1L);
             ThreadUtils.context.set(context);
+            return true;
+        }
+        if (StringUtils.startsWith(uri, "/img/")) {
             return true;
         }
         if (StringUtils.equals(uri, "/user/login")) {

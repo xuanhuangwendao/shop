@@ -25,6 +25,18 @@ public class UserInfo {
     @Column(name = "gmt_modified")
     private Instant gmtModified;
 
+    @Column(name = "img")
+    private String  img;
+
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     public Instant getGmtModified() {
         return gmtModified;
     }
