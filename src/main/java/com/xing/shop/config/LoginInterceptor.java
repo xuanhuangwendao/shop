@@ -39,7 +39,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         if (StringUtils.startsWith(uri, "/img/")) {
             return true;
         }
-        if (StringUtils.equals(uri, "/user/login")) {
+        if (StringUtils.equalsAny(uri, "/user/login", "/user/register")) {
             return true;
         }
         String token = request.getHeader("token");

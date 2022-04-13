@@ -1,4 +1,4 @@
-package com.xing.shop.domain.model;
+package com.xing.shop.domain.entity;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -8,19 +8,16 @@ import java.time.Instant;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userid")
+    @Column(name = "userid", nullable = false)
     private Long id;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "id_number")
-    private String idNumber;
-
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private Integer status;
 
     @Column(name = "gmt_create")
@@ -51,14 +48,6 @@ public class Account {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public String getIdNumber() {
-        return idNumber;
-    }
-
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber;
     }
 
     public String getPassword() {

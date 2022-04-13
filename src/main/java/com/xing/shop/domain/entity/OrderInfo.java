@@ -1,23 +1,19 @@
-package com.xing.shop.domain.model;
+package com.xing.shop.domain.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.Instant;
 
 @Entity
-@Table(name = "`order`")
-public class Order {
+@Table(name = "order_info")
+public class OrderInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    /**
-     * 1 订单创建
-     *
-     */
-    @Column(name = "type")
-    private Integer type;
+    @Column(name = "status")
+    private Integer status;
 
     @Column(name = "amount", precision = 10, scale = 2)
     private BigDecimal amount;
@@ -28,24 +24,20 @@ public class Order {
     @Column(name = "item_num")
     private Integer itemNum;
 
-    @Column(name = "gmt_create")
-    private Instant gmtCreate;
-
-    @Column(name = "gmt_modified")
-    private Instant gmtModified;
-
     @Column(name = "buyer_id")
     private Long buyerId;
 
     @Column(name = "seller_id")
     private Long sellerId;
 
-    @Column(name = "price", precision = 10, scale = 2)
-    private BigDecimal price;
+    @Column(name = "group_id")
+    private String groupId;
 
-    @Column(name = "item_title")
-    private String itemTitle;
+    @Column(name = "gmt_create")
+    private Instant gmtCreate;
 
+    @Column(name = "gmt_modified")
+    private Instant gmtModified;
 
     public Instant getGmtModified() {
         return gmtModified;
@@ -61,6 +53,30 @@ public class Order {
 
     public void setGmtCreate(Instant gmtCreate) {
         this.gmtCreate = gmtCreate;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
+
+    public Long getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(Long sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public Long getBuyerId() {
+        return buyerId;
+    }
+
+    public void setBuyerId(Long buyerId) {
+        this.buyerId = buyerId;
     }
 
     public Integer getItemNum() {
@@ -87,12 +103,12 @@ public class Order {
         this.amount = amount;
     }
 
-    public Integer getType() {
-        return type;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Long getId() {
@@ -102,40 +118,4 @@ public class Order {
     public void setId(Long id) {
         this.id = id;
     }
-
-
-    public Long getBuyerId() {
-        return buyerId;
-    }
-
-    public void setBuyerId(Long buyerId) {
-        this.buyerId = buyerId;
-    }
-
-    public Long getSellerId() {
-        return sellerId;
-    }
-
-    public void setSellerId(Long sellerId) {
-        this.sellerId = sellerId;
-    }
-
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-
-    public String getItemTitle() {
-        return itemTitle;
-    }
-
-    public void setItemTitle(String itemTitle) {
-        this.itemTitle = itemTitle;
-    }
-
 }

@@ -16,4 +16,6 @@ public class RegisterRequest {
     public String nickname;
 
     public String address;
+
+    public String sign;
 }

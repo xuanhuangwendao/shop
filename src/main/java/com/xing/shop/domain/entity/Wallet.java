@@ -1,4 +1,4 @@
-package com.xing.shop.domain.model;
+package com.xing.shop.domain.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,20 +8,20 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 @Entity
-@Table(name = "item_base")
-public class ItemBase {
+@Table(name = "wallet")
+public class Wallet {
     @Id
-    @Column(name = "item_id", nullable = false)
+    @Column(name = "userid", nullable = false)
     private Long id;
 
-    @Column(name = "seller_id")
-    private Long sellerId;
+    @Column(name = "id_number")
+    private String idNumber;
 
-    @Column(name = "price", precision = 10, scale = 2)
-    private BigDecimal price;
+    @Column(name = "balance", precision = 10, scale = 2)
+    private BigDecimal balance;
 
-    @Column(name = "stock", precision = 10, scale = 2)
-    private BigDecimal stock;
+    @Column(name = "seller")
+    private Integer seller;
 
     @Column(name = "gmt_create")
     private Instant gmtCreate;
@@ -45,28 +45,28 @@ public class ItemBase {
         this.gmtCreate = gmtCreate;
     }
 
-    public BigDecimal getStock() {
-        return stock;
+    public Integer getSeller() {
+        return seller;
     }
 
-    public void setStock(BigDecimal stock) {
-        this.stock = stock;
+    public void setSeller(Integer seller) {
+        this.seller = seller;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public BigDecimal getBalance() {
+        return balance;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 
-    public Long getSellerId() {
-        return sellerId;
+    public String getIdNumber() {
+        return idNumber;
     }
 
-    public void setSellerId(Long sellerId) {
-        this.sellerId = sellerId;
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
     }
 
     public Long getId() {

@@ -1,4 +1,4 @@
-package com.xing.shop.domain.model;
+package com.xing.shop.domain.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,23 +19,17 @@ public class UserInfo {
     @Column(name = "address")
     private String address;
 
+    @Column(name = "profile_pic")
+    private String profilePic;
+
+    @Column(name = "sign")
+    private String sign;
+
     @Column(name = "gmt_create")
     private Instant gmtCreate;
 
     @Column(name = "gmt_modified")
     private Instant gmtModified;
-
-    @Column(name = "img")
-    private String  img;
-
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
 
     public Instant getGmtModified() {
         return gmtModified;
@@ -51,6 +45,22 @@ public class UserInfo {
 
     public void setGmtCreate(Instant gmtCreate) {
         this.gmtCreate = gmtCreate;
+    }
+
+    public String getSign() {
+        return sign;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
+    }
+
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
     }
 
     public String getAddress() {

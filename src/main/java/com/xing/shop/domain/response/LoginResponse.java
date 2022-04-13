@@ -4,16 +4,10 @@ import lombok.Data;
 
 /**
  * @author ：xuanhuangwendao
- * @date ：Created in 2022/3/20 1:11
+ * @date ：Created in 2022/4/13 22:16
  */
 @Data
 public class LoginResponse {
-    /**
-     * jwt
-     */
-    private String token;
-    /**
-     *
-     */
 
+    private String token;
 }

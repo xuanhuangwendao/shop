@@ -7,11 +7,11 @@ import java.util.List;
 
 /**
  * @author ：xuanhuangwendao
- * @date ：Created in 2022/4/13 23:01
+ * @date ：Created in 2022/4/13 22:27
  */
 @Data
-public class CartResponse {
+public class RecommendResponse {
 
-    private List<OrderResponse> cartItemList = new ArrayList<>();
+    private List<SimpleItemResponse> itemList = new ArrayList<>();
 
 }

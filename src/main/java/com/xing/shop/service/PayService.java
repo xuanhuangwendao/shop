@@ -1,7 +1,8 @@
 package com.xing.shop.service;
 
 import com.xing.shop.domain.Result;
-import com.xing.shop.domain.model.Order;
+import com.xing.shop.domain.response.CartResponse;
+import com.xing.shop.domain.response.OrderUpdateResponse;
 
 import java.util.List;
 
@@ -11,6 +12,13 @@ import java.util.List;
  */
 
 public interface PayService {
-    Result<List<Order>> payOrder(List<Long> orderIdList);
+
+    Result<OrderUpdateResponse> createOrder(long itemId, int num);
+
+    Result<CartResponse> getOrderListByStatus(int status);
+
+    Result<OrderUpdateResponse> update(long orderId, int num);
+
+
 
 }

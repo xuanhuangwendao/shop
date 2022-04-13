@@ -33,7 +33,9 @@ public enum ResultCode {
 
     STOCK_NOT_ENOUGH(608, "商品库存不足"),
 
-    REGISTER_ERROR(609, "注册失败")
+    REGISTER_ERROR(609, "注册失败"),
+
+    UPLOAD_FAIL(610, "上传文件失败")
 
     ;
 

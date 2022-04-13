@@ -1,16 +1,24 @@
 package com.xing.shop.domain.response;
 
-import com.xing.shop.domain.model.Order;
 import lombok.Data;
-
-import java.util.List;
 
 /**
  * @author ：xuanhuangwendao
- * @date ：Created in 2022/3/23 21:09
+ * @date ：Created in 2022/4/13 23:01
  */
 @Data
 public class OrderResponse {
 
-    List<Order> orderList;
+    public long orderId;
+
+    public String title;
+
+    public String picUrl;
+
+    public double price;
+
+    public String priceText;
+
+    public int num;
+
 }

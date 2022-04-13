@@ -1,39 +1,37 @@
-package com.xing.shop.domain.model;
+package com.xing.shop.domain.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.Instant;
 
 @Entity
-@Table(name = "summary")
-public class Summary {
+@Table(name = "item_base")
+public class ItemBase {
     @Id
-    @Column(name = "itme_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
+
+    @Column(name = "category")
+    private Long category;
 
     @Column(name = "seller_id")
     private Long sellerId;
 
-    @Column(name = "seller_nick")
-    private String sellerNick;
-
     @Column(name = "price", precision = 10, scale = 2)
     private BigDecimal price;
 
-    @Column(name = "stock", precision = 10, scale = 2)
-    private BigDecimal stock;
-
-    @Column(name = "title")
-    private String title;
+    @Column(name = "stock")
+    private Integer stock;
 
     @Column(name = "pic_url")
     private String picUrl;
 
     @Column(name = "`desc`")
     private String desc;
+
+    @Column(name = "title")
+    private String title;
 
     @Column(name = "gmt_create")
     private Instant gmtCreate;
@@ -57,6 +55,14 @@ public class Summary {
         this.gmtCreate = gmtCreate;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getDesc() {
         return desc;
     }
@@ -73,19 +79,11 @@ public class Summary {
         this.picUrl = picUrl;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public BigDecimal getStock() {
+    public Integer getStock() {
         return stock;
     }
 
-    public void setStock(BigDecimal stock) {
+    public void setStock(Integer stock) {
         this.stock = stock;
     }
 
@@ -97,20 +95,20 @@ public class Summary {
         this.price = price;
     }
 
-    public String getSellerNick() {
-        return sellerNick;
-    }
-
-    public void setSellerNick(String sellerNick) {
-        this.sellerNick = sellerNick;
-    }
-
     public Long getSellerId() {
         return sellerId;
     }
 
     public void setSellerId(Long sellerId) {
         this.sellerId = sellerId;
+    }
+
+    public Long getCategory() {
+        return category;
+    }
+
+    public void setCategory(Long category) {
+        this.category = category;
     }
 
     public Long getId() {
