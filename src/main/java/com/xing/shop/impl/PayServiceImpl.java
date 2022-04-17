@@ -146,7 +146,7 @@ public class PayServiceImpl implements PayService {
         List<OrderInfo> orderList = orderInfoRepository.findAllById(orderIds);
         BigDecimal sum = BigDecimal.ZERO;
         for (OrderInfo orderInfo : orderList) {
-            sum.add(orderInfo.getAmount());
+            sum = sum.add(orderInfo.getAmount());
 
         }
         Wallet wallet = walletRepository.getById(userId);

@@ -43,8 +43,8 @@ public class UserController {
      * @return  token
      */
     @RequestMapping("/login")
-    public Result<LoginResponse> login(@RequestParam String username, @RequestParam String password) {
-        return userService.login(username, password);
+    public Result<LoginResponse> login(@RequestParam String username, @RequestParam String password, @RequestParam Integer userType) {
+        return userService.login(username, password, userType);
     }
 
     /**

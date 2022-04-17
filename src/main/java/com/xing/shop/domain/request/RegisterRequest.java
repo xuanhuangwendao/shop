@@ -18,4 +18,6 @@ public class RegisterRequest {
     public String address;
 
     public String sign;
+
+    public Integer userType;
 }

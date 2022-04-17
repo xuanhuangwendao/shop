@@ -16,4 +16,6 @@ public class UserInfoResponse {
     private String sign;
 
     private String address;
+
+    private String balance;
 }

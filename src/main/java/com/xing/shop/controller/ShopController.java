@@ -1,10 +1,14 @@
 package com.xing.shop.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.xing.shop.domain.Result;
+import com.xing.shop.domain.request.CreateShopRequest;
+import com.xing.shop.domain.response.CreateShopResponse;
 import com.xing.shop.domain.response.DetailResponse;
 import com.xing.shop.domain.response.RecommendResponse;
 import com.xing.shop.service.OrderService;
 import com.xing.shop.service.ShopService;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +35,26 @@ public class ShopController {
         Result<DetailResponse> result = shopService.itemDetail(id);
         return result;
     }
+
+    @RequestMapping("/goods")
+    public Result<RecommendResponse> goods() {
+        Result<RecommendResponse> result = shopService.getGoodsList();
+        return result;
+    }
+
+
+    @RequestMapping("/goodsItem")
+    public Result<DetailResponse> goodsItem(@RequestParam Long id) {
+        Result<DetailResponse> result = shopService.getGoodsItem(id);
+        return result;
+    }
+
+    @RequestMapping("/createShop")
+    public Result<CreateShopResponse> createShop(@RequestBody CreateShopRequest request) {
+        Result<CreateShopResponse> result = shopService.createShop(request);
+        return result;
+    }
+
 
 
 }

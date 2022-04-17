@@ -20,7 +20,7 @@ public interface UserService {
      * @param password 用户登录密码
      * @return token
      */
-    Result<LoginResponse> login(String userName, String password);
+    Result<LoginResponse> login(String userName, String password, int userType);
 
     Result<RegisterResponse> register(RegisterRequest registerInfo);
 

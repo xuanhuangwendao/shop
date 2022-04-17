@@ -52,9 +52,12 @@ public class UserServiceImpl implements UserService {
     private WalletRepository walletRepository;
 
     @Override
-    public Result<LoginResponse> login(String userName, String password) {
+    public Result<LoginResponse> login(String userName, String password, int userType) {
         Account account = accountRepository.getAccountByUsernameEquals(userName);
         if (account == null) {
+            return Result.fail(ResultCode.USER_NOT_EXIT);
+        }
+        if (account.getStatus() != userType) {
             return Result.fail(ResultCode.USER_NOT_EXIT);
         }
         if (!StringUtils.equals(password, account.getPassword())) {
@@ -79,7 +82,7 @@ public class UserServiceImpl implements UserService {
         account = new Account();
         account.setUsername(registerInfo.getUsername());
         account.setPassword(registerInfo.getPassword());
-        account.setStatus(0);
+        account.setStatus(registerInfo.getUserType());
         account.setGmtCreate(Instant.now());
         account.setGmtModified(Instant.now());
         Account accountSave = accountRepository.save(account);
@@ -112,12 +115,14 @@ public class UserServiceImpl implements UserService {
         if (one.isEmpty()) {
             return Result.fail(ResultCode.USER_NOT_EXIT);
         }
+        Wallet wallet = walletRepository.getById(userId);
         UserInfo userInfo = one.get();
         UserInfoResponse response = new UserInfoResponse();
         response.setNickName(userInfo.getNickname());
         response.setSign(userInfo.getSign());
         response.setAddress(userInfo.getAddress());
         response.setProfilePic(userInfo.getProfilePic());
+        response.setBalance(wallet.getBalance().toPlainString());
 
         return Result.success(response);
     }
