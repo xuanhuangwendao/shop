@@ -3,6 +3,7 @@ package com.xing.shop.impl;
 import com.xing.shop.config.ResultCode;
 import com.xing.shop.domain.Context;
 import com.xing.shop.domain.Result;
+import com.xing.shop.domain.entity.Wallet;
 import com.xing.shop.domain.response.LoginResponse;
 import com.xing.shop.domain.entity.Account;
 import com.xing.shop.domain.entity.UserInfo;
@@ -12,6 +13,7 @@ import com.xing.shop.domain.response.UploadFileResponse;
 import com.xing.shop.domain.response.UserInfoResponse;
 import com.xing.shop.repository.AccountRepository;
 import com.xing.shop.repository.UserInfoRepository;
+import com.xing.shop.repository.WalletRepository;
 import com.xing.shop.service.UserService;
 import com.xing.shop.util.JwtUtils;
 import com.xing.shop.util.ThreadUtils;
@@ -23,6 +25,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Optional;
 import java.util.UUID;
@@ -44,6 +47,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserInfoRepository userInfoRepository;
+
+    @Autowired
+    private WalletRepository walletRepository;
 
     @Override
     public Result<LoginResponse> login(String userName, String password) {
@@ -87,6 +93,15 @@ public class UserServiceImpl implements UserService {
         userInfo.setGmtCreate(Instant.now());
         userInfo.setGmtModified(Instant.now());
         UserInfo userSave = userInfoRepository.save(userInfo);
+
+        Wallet wallet = new Wallet();
+        wallet.setId(accountSave.getId());
+        wallet.setSeller(0);
+        wallet.setBalance(BigDecimal.valueOf(1000));
+        wallet.setGmtCreate(Instant.now());
+        wallet.setGmtModified(Instant.now());
+        walletRepository.save(wallet);
+
         RegisterResponse response = new RegisterResponse();
         return Result.success(response);
     }

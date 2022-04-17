@@ -21,4 +21,9 @@ public class OrderResponse {
 
     public int num;
 
+    public String status;
+
+    public String createTime;
+
+    public String payTime;
 }

@@ -9,5 +9,7 @@ public interface OrderInfoRepository extends JpaRepository<OrderInfo, Long> {
 
     List<OrderInfo> getAllByStatusEqualsAndBuyerIdEquals(int status, long buyerId);
 
+    List<OrderInfo> getAllByBuyerIdEquals(long buyerId);
+
     List<OrderInfo> getAllByIdIn(List<Long> idList);
 }

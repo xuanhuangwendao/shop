@@ -35,7 +35,9 @@ public enum ResultCode {
 
     REGISTER_ERROR(609, "注册失败"),
 
-    UPLOAD_FAIL(610, "上传文件失败")
+    UPLOAD_FAIL(610, "上传文件失败"),
+
+    BALANCE_LOSS(611, "账户余额不足")
 
     ;
 

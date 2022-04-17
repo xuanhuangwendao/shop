@@ -12,6 +12,14 @@ public class OrderInfo {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    /**
+     * 订单类型
+     * 1 已创建
+     * 2 已付款
+     * 3 已收货待确认
+     * 4 订单完成
+     * -1 已取消
+     */
     @Column(name = "status")
     private Integer status;
 

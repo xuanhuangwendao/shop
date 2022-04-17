@@ -19,6 +19,7 @@ public interface PayService {
 
     Result<OrderUpdateResponse> update(long orderId, int num);
 
+    Result<OrderUpdateResponse> payOrder(List<Long> orderIds);
 
 
 }

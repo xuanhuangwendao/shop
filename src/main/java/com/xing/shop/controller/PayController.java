@@ -50,4 +50,8 @@ public class PayController {
         }
     }
 
+    @RequestMapping("/payOrder")
+    public Result<OrderUpdateResponse> payOrder(@RequestParam List<Long> orderList) {
+            return payService.payOrder(orderList);
+    }
 }
