@@ -22,6 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ClassUtils;
+import org.springframework.util.NumberUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -82,7 +83,7 @@ public class UserServiceImpl implements UserService {
         account = new Account();
         account.setUsername(registerInfo.getUsername());
         account.setPassword(registerInfo.getPassword());
-        account.setStatus(registerInfo.getUserType());
+        account.setStatus(Integer.valueOf(registerInfo.getUserType()));
         account.setGmtCreate(Instant.now());
         account.setGmtModified(Instant.now());
         Account accountSave = accountRepository.save(account);

@@ -19,5 +19,5 @@ public class RegisterRequest {
 
     public String sign;
 
-    public Integer userType;
+    public String userType;
 }
