@@ -2,18 +2,21 @@ package com.xing.shop.controller;
 
 import com.xing.shop.config.ResultCode;
 import com.xing.shop.domain.Result;
+import com.xing.shop.domain.request.PayOrderRequest;
 import com.xing.shop.domain.response.CartResponse;
 import com.xing.shop.domain.response.OrderUpdateResponse;
 import com.xing.shop.service.OrderService;
 import com.xing.shop.service.PayService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ：xuanhuangwendao
@@ -51,7 +54,7 @@ public class PayController {
     }
 
     @RequestMapping("/payOrder")
-    public Result<OrderUpdateResponse> payOrder(@RequestParam List<Long> orderList) {
-            return payService.payOrder(orderList);
+    public Result<OrderUpdateResponse> payOrder(@RequestBody PayOrderRequest params) {
+        return payService.payOrder(params.getOrderList());
     }
 }
