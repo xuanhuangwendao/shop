@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
     public static final String DEFAULT_PIC = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fc99e193eb61eb3b4f412f4f84864f4ff67138fd65a56-lF6ywc_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1652459264&t=cff2563f5eeedcf45aa310cee6c514d1";
 
-    public static final String BASE_URL = "http://192.168.31.42:7002/img/";
+    public static final String BASE_URL = "http://123.60.77.134:7002/img/";
 
     @Autowired
     private AccountRepository accountRepository;
@@ -135,7 +135,7 @@ public class UserServiceImpl implements UserService {
         }
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         try {
-            String path = ClassUtils.getDefaultClassLoader().getResource("").getPath() + "static\\img\\";
+            String path = "/home/img/";
 
             File img = new File(path);
             if (!img.exists()) {

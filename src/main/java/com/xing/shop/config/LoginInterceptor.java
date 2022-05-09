@@ -44,14 +44,17 @@ public class LoginInterceptor implements HandlerInterceptor {
         }
         String token = request.getHeader("token");
         if (StringUtils.isBlank(token)) {
+            // token为空，直接失败
             writeResponse(response, Result.fail(ResultCode.TOKEN_FAIL));
             return false;
         }
         String userId = JwtUtils.verifyToken(token);
         if (StringUtils.isBlank(userId)) {
+            // token验证失败，返回调用失败结果
             writeResponse(response, Result.fail(ResultCode.TOKEN_FAIL));
             return false;
         }
+        // 将用户信息存储在线程池中，供service使用
         Context context = new Context();
         context.setUserId(NumberUtils.toLong(userId));
         ThreadUtils.context.set(context);

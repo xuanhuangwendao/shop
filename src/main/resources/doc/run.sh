@@ -1,6 +1,10 @@
 
 nohup java -jar /home/shop-0.0.1-SNAPSHOT.jar >logs.txt &
 
+
+
+HDX123...
+
 java-1.8.0-openjdk-1.8.0.322.b06-1.el7_9.x86_64
 jre
 jre-1.8.0
